@@ -21,3 +21,12 @@ class IntHoldingTab(BaseHoldingTab):
         self.registers[address] = register_widget
         self.container_layout.addWidget(register_widget)
 
+
+    def on_update_data(self):
+        print(f"Обновление данных для Int Holding!")
+
+    def on_save_data(self):
+        print(f"Сохранение данных для Int Holding")
+        values = self.get_all_values()
+        print("Значения для сохранения:", values)
+

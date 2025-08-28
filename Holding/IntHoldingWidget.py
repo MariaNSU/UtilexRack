@@ -10,7 +10,10 @@ class IntHoldingWidget(HoldingRegisterWidget):
             restr_ar = [-1000, 1000]
         self.create_spinbox(restr_ar)
 
-    def create_spinbox(self, restr_ar):
+    def create_spinbox(self, restr_ar=None):
+        if restr_ar is None:
+            restr_ar = [-1000, 1000]
+
         self.spinbox = QSpinBox()
         self.spinbox.setRange(restr_ar[0], restr_ar[1])
         self.spinbox.setFont(QFont("Arial", 10))
@@ -27,7 +30,7 @@ class IntHoldingWidget(HoldingRegisterWidget):
             }
         """)
 
-        self.layout().addWidget(self.spinbox)
+        self.layout.addWidget(self.spinbox)
 
     def get_value(self):
         return self.spinbox.value() if self.spinbox else 0

@@ -31,9 +31,7 @@ class HoldingRegisterWidget(QWidget):
         self.layout.addStretch()
 
     def get_value(self):
-        """Получить значение (должен быть реализован в дочерних классах)"""
-        raise NotImplementedError
+        pass
 
     def set_value(self, value):
-        """Установить значение (должен быть реализован в дочерних классах)"""
-        raise NotImplementedError
+        pass

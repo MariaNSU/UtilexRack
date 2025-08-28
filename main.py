@@ -1,10 +1,12 @@
 import sys
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QTabWidget, QApplication)
 from PyQt5.QtGui import QFont
+
 from Coil.CoilTab import CoilTab
 from Input.IntInputTab import IntInputTab
 from Input.FloatInputTab import FloatInputTab
-
+from Holding.IntHoldingTab import IntHoldingTab
+from Holding.FloatHoldingTab import FloatHoldingTab
 
 class UtilexMainWindow(QMainWindow):
     def __init__(self):
@@ -31,8 +33,11 @@ class UtilexMainWindow(QMainWindow):
         self.float_input_tab = FloatInputTab()
         self.tab_widget.addTab(self.float_input_tab, "Float Input Регистры")
 
-        self.holding_tab = QWidget()
-        self.tab_widget.addTab(self.holding_tab, "Holding Регистры")
+        self.holding_tab = IntHoldingTab()
+        self.tab_widget.addTab(self.holding_tab, "Int Holding Регистры")
+
+        self.holding_tab = FloatHoldingTab()
+        self.tab_widget.addTab(self.holding_tab, "Float Holding Регистры")
 
     def load_test_data(self):
         self.int_input_tab.update_register(1, 1)

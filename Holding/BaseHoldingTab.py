@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout, QScrollAr
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 from Input.UpdateButton import UpdateButton
-
+from Holding.SaveButton import SaveButton
 class BaseHoldingTab(QWidget):
     def __init__(self, title, parent=None):
         super().__init__(parent)
@@ -32,52 +32,27 @@ class BaseHoldingTab(QWidget):
         self.update_button = UpdateButton()
         self.update_button.clicked.connect(self.on_update_data)
 
-        self.save_button = QPushButton("Сохранить все значения")
-        self.save_button.setFixedHeight(50)
-        self.save_button.setFont(QFont("Arial", 12, QFont.Bold))
-        self.save_button.setStyleSheet("""
-            QPushButton {
-                background-color: #27ae60;
-                color: white;
-                border: 2px solid #219a52;
-                border-radius: 8px;
-                padding: 10px 20px;
-                margin: 10px 15px;
-            }
-            QPushButton:hover {
-                background-color: #2ecc71;
-                border: 2px solid #27ae60;
-            }
-            QPushButton:pressed {
-                background-color: #219a52;
-            }
-        """)
+        self.save_button = SaveButton()
         self.save_button.clicked.connect(self.on_save_data)
 
-        button_layout = QHBoxLayout()
-        button_layout.addWidget(self.update_button)
-        button_layout.addWidget(self.save_button)
+        self.button_layout = QHBoxLayout()
+        self.button_layout.addWidget(self.update_button)
+        self.button_layout.addWidget(self.save_button)
 
-        main_layout.addWidget(title_label)
-        main_layout.addWidget(scroll)
-        main_layout.addLayout(button_layout)
+        self.main_layout.addWidget(self.title_label)
+        self.main_layout.addWidget(self.scroll)
+        self.main_layout.addLayout(self.button_layout)
 
     def on_update_data(self):
-        """Обновить данные с устройства"""
-        print(f"Обновление данных для {self.title}")
+        pass
 
     def on_save_data(self):
-        """Сохранить все значения на устройство"""
-        print(f"Сохранение данных для {self.title}")
-        values = self.get_all_values()
-        print("Значения для сохранения:", values)
+        pass
 
     def get_all_values(self):
-        """Получить все значения регистров"""
         return {address: widget.get_value() for address, widget in self.registers.items()}
 
     def set_all_values(self, values_dict):
-        """Установить все значения регистров"""
         for address, value in values_dict.items():
             if address in self.registers:
                 self.registers[address].set_value(value)

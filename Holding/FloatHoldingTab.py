@@ -1,13 +1,14 @@
+from Holding.BaseHoldingTab import BaseHoldingTab
+from Holding.FloatHolfingWidget import FloatHoldingWidget
+
 
 class FloatHoldingTab(BaseHoldingTab):
-    """Вкладка для float Holding регистров"""
 
     def __init__(self, parent=None):
         super().__init__("FLOAT Holding Регистры", parent)
         self.create_float_registers()
 
     def create_float_registers(self):
-        """Создаем float Holding регистры"""
         float_registers = [
             ("Уставка температуры", 301),
             ("Аварийный порог влажности", 305),
@@ -25,7 +26,15 @@ class FloatHoldingTab(BaseHoldingTab):
             self.add_register(name, address)
 
     def add_register(self, name, address):
-        """Добавить float регистр"""
         register_widget = FloatHoldingWidget(name, address)
         self.registers[address] = register_widget
         self.container_layout.addWidget(register_widget)
+
+
+    def on_update_data(self):
+        print(f"Обновление данных для Float Holding!")
+
+    def on_save_data(self):
+        print(f"Сохранение данных для Float Holding")
+        values = self.get_all_values()
+        print("Значения для сохранения:", values)

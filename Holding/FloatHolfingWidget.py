@@ -10,7 +10,10 @@ class FloatHoldingWidget(HoldingRegisterWidget):
             restr_ar = [-1000, 1000]
         self.create_double_spinbox(restr_ar)
 
-    def create_double_spinbox(self, restr_ar):
+    def create_double_spinbox(self, restr_ar=None):
+        if restr_ar is None:
+            restr_ar = [-1000, 1000]
+
         self.spinbox = QDoubleSpinBox()
         self.spinbox.setDecimals(2)  # 2 знака после запятой
         self.spinbox.setRange(restr_ar[0], restr_ar[1])
@@ -28,7 +31,7 @@ class FloatHoldingWidget(HoldingRegisterWidget):
             }
         """)
 
-        self.layout().addWidget(self.spinbox)
+        self.layout.addWidget(self.spinbox)
 
     def get_value(self):
         return self.spinbox.value() if self.spinbox else 0.0

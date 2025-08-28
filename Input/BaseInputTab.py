@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QScrollArea, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QScrollArea
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 from Input.InputRegisterWidget import InputRegisterWidget
